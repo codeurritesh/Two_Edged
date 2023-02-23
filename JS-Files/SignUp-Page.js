@@ -35,15 +35,21 @@ submitdata.addEventListener('click', (e) => {
     var password = document.getElementById('Pass1').value; 
     // var p1=document.getElementById('Pass1').value;
     var p2 = document.getElementById('Pass2').value;
+         const regex_pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
     if (uname == "" || email == "" || password == "" || p2 == "") {
         document.getElementById("showerr").innerText = "Empty Fields!";
         return;
     }
     if (link == "") {
-        document.getElementById("showerr").innerText = "Select Aavatar";
+        document.getElementById("showerr").innerText = "Select Avatar";
         return;
     }
-    
+     if (!regex_pattern.test(email)) {
+
+        document.getElementById("showerr").innerText = "Invalid Email";
+        return;
+        } 
     if (password == p2) {
 
         createUserWithEmailAndPassword(auth, email, password)
@@ -71,7 +77,7 @@ submitdata.addEventListener('click', (e) => {
                         // The write failed...
                         alert(error.message);
                         // window.open("Login.html");
-                        document.getElementById('showerr').innerText="Error Cheak Again";
+                        document.getElementById('showerr').innerText="Error Check Again";
                         console.log(error);
                         // window.open('Login.html');
 
@@ -89,7 +95,7 @@ submitdata.addEventListener('click', (e) => {
     }
     else {
         // alert("Password does'nt Match");
-        document.getElementById("showerr").innerText = "Password not match";
+        document.getElementById("showerr").innerText = "Password dosen't match";
     }
     // ---------------------------------------------------------------------------------------------------------------------------------------
     // document.getElementById('a1').onclick(change())
